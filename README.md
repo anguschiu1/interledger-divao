@@ -82,18 +82,29 @@ If it is in success, you will see the similar response like this:
 {"originalAmount":1000000,"amountDelivered":1000000,"amountSent":1000000,"successfulPayment":true}
 ```
 
-# Resources
-
-[Interledger.js Monorepo, covers STREAMS and payment library](https://github.com/interledgerjs/interledgerjs)
-
 # Outline the structure of a ILP-enabled web app
 
 ![Sender, Receiver, Connectors in ILP](https://interledger.org/rfcs/shared/graphs/interledger-model.svg?_cchid=0576855be050db3ae68a764cd2e01b2c)
 
+Sequence diagram from the [rfc](deprecated/0003-interledger-protocol/0003-interledger-protocol.md)
+
+```
+  (1,21)                                               (11)
+Application                                        Application
+       \                                               /
+     (2,20)                 (6,16)                 (10,12)
+Interledger Module    Interledger Module    Interledger Module
+          \               /       \                 /
+         (3,19)       (5,17)     (7,15)         (9,13)
+          LLI-1       LLI-1       LLI-2         LLI-2
+             \  (4,18) /             \  (8,14)   /
+            Local Ledger 1          Local Ledger 2
+```
+
 In a simplified design,
 
 1. **Sender** and **Receiver** can be the web app to interact with users,
-2. **Connector** provides necessary interfaces and service that enable web app to interact with Interledger.
+2. **Connector** covers functionality of "Interledger Module", "Local Ledger Interface (LLI)" and intructing "Local Ledger", provides necessary interfaces and service that enable web app to interact with Interledger.
 
 Connectors are responsible to:
 
@@ -124,3 +135,7 @@ Details of the Interledger flow is [here](https://github.com/interledger/rfcs/bl
 The steps to deploy and run JavaScript ILP connector is [here](https://github.com/interledgerjs/ilp-connector)
 
 TODO: Have yet to locate relevant documentation about how to use it to interface a web app with Interledger network. (TBD)
+
+# Resources
+
+[Interledger.js Monorepo](https://github.com/interledgerjs/interledgerjs), which covers STREAMS and payment library
