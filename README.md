@@ -3,7 +3,7 @@
 - [x] Basic testnet wallet operation
 - [x] Outline the structure of a ILP-enabled web app
 - [x] Understand and deploy moneyd and start a local testnet
-- [ ] Spin up local ILP network
+- [x] Spin up local ILP network
 - [ ] Deploy and run a ILP connector
 - [ ] Connect connector to Interledger
 - [ ] Connect web app to ILP connector
