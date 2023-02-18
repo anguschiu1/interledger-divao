@@ -3,9 +3,10 @@
 - [x] Basic testnet wallet operation
 - [x] Outline the structure of a ILP-enabled web app
 - [x] Understand and deploy moneyd and start a local testnet
-- [x] Spin up local ILP network
-- [ ] Deploy and run a ILP connector
-- [ ] Connect connector to Interledger
+- [x] Spin up local ILP network (using interledger-rs)
+- [ ] Try out [Interledger-rs API Specification](https://app.swaggerhub.com/apis/interledger-rs/Interledger/1.1) locally
+- [ ] Deploy and run a [ILP connector](https://github.com/interledgerjs/ilp-connector)
+- [ ] Connect ILP connector to Interledger
 - [ ] Connect web app to ILP connector
 - [ ] Deploy and test to submit ILP SPSP Invoice
 
@@ -117,6 +118,12 @@ Connectors are responsible to:
 
 Details of the Interledger flow is [here](https://github.com/interledger/rfcs/blob/master/0027-interledger-protocol-4/0027-interledger-protocol-4.md#flow) (worth a read)
 
+# Spin up local ILP network
+
+[Follow the step mentioned here](https://interledger.org/developer-tools/get-started/spin-up/)
+
+Details are consolidated in scripts folder, starts [here](scripts/1_image_pull.sh).
+
 # Understand and deploy moneyd and start a local testnet
 
 ## Function
@@ -125,10 +132,6 @@ Details of the Interledger flow is [here](https://github.com/interledger/rfcs/bl
 - Enable applications that run on top of Interledger, using [ilp-plugin](https://www.npmjs.com/package/ilp-plugin) NPM package
 
 (Read through the repo, looks like a dead project, TBD)
-
-# Spin up local ILP network
-
-[Follow the step mentioned here](https://interledger.org/developer-tools/get-started/spin-up/)
 
 # Deploy and run a ILP connector
 
@@ -139,3 +142,5 @@ TODO: Have yet to locate relevant documentation about how to use it to interface
 # Resources
 
 [Interledger.js Monorepo](https://github.com/interledgerjs/interledgerjs), which covers STREAMS and payment library
+[A demo that sends payments between 3 Interledger.rs nodes and settles using Ethereum transactions and XRP transactions](https://github.com/interledger/interledger-rs/tree/master/examples/eth-xrp-three-nodes)
+[Interledger Rust implementation](https://github.com/interledger/interledger-rs)
