@@ -4,11 +4,11 @@
 - [x] Outline the structure of a ILP-enabled web app
 - [x] Understand and deploy moneyd and start a local testnet
 - [x] Spin up local ILP network (using interledger-rs)
-- [ ] Try out [Interledger-rs API Specification](https://app.swaggerhub.com/apis/interledger-rs/Interledger/1.1) locally
-- [ ] Deploy and run a [ILP connector](https://github.com/interledgerjs/ilp-connector)
-- [ ] Connect ILP connector to Interledger
-- [ ] Connect web app to ILP connector
-- [ ] Deploy and test to submit ILP SPSP Invoice
+- [x] Try out [Interledger-rs API Specification](https://app.swaggerhub.com/apis/interledger-rs/Interledger/1.1) locally
+- [ ] Build a demo web app to submit ILP SPSP Invoice
+- [ ] Auxillary: Deploy and run a JavaScript [ILP connector](https://github.com/interledgerjs/ilp-connector)
+- [ ] Auxillary: Connect ILP connector to Interledger
+- [ ] Auxillary: Connect web app to ILP connector
 
 # Basic testnet wallet operation
 
@@ -120,11 +120,45 @@ Details of the Interledger flow is [here](https://github.com/interledger/rfcs/bl
 
 # Spin up local ILP network
 
-[Follow the step mentioned here](https://interledger.org/developer-tools/get-started/spin-up/)
+[Follow the step mentioned here](https://interledger.org/developer-tools/get-started/spin-up/), OR
 
-Details are consolidated in scripts folder, starts [here](scripts/1_image_pull.sh).
+\*\* Run 3 ILP nodes for local test
+
+You can use scripts in scripts folder to deploy testing docker set. Run:
+
+1. ([1_image_pull.sh](scripts/1_image_pull.sh)) to pull images
+2. ([2_start_nodes.sh](scripts/2_start_nodes.sh)) to spin up 3 nodes, named Alice, Bob and Charlie
+
+## Testing local ILP network
+
+We simulate Alice sends ETH to Charlie via Bob.
+
+In [script](scripts/1_image_pull.sh) folder,
+
+1. [Check balances](scripts/check_balances.sh)
+2. [CLI command](scripts/alice_send_eth_to_charlie.sh) to Alice's node, instruct account Alice to send 200000 gwei to Charlie's account in Charlie's node
+3. [Check balances](scripts/check_balances.sh) to see the result
+
+The result ILP network will be like this
+![Alice send ETH to Charlie](docs/alice_send_eth_to_charlie.svg)
+
+## Tear down docker containers
+
+Run [stop_and_remove](scripts/stop_and_remove.sh) to tear down dockers.
+
+# Try out [Interledger-rs API Specification](https://app.swaggerhub.com/apis/interledger-rs/Interledger/1.1) locally
+
+In this example, we published port 7770 of docker container `alice-node`, `bob-node` and `charlie-node` as localhost port `7770`,`7870` and `7970` respectively, we can use HTTP REST API to communicate with these ILP nodes.
+
+You can try out cURL commands in [check_balance_curl.sh](scripts/check_balances_curl.sh)
+
+# Build a demo web app to submit ILP SPSP Invoice
+
+TODO
 
 # Understand and deploy moneyd and start a local testnet
+
+TBC
 
 ## Function
 
