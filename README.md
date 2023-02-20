@@ -6,6 +6,8 @@
 - [x] Spin up local ILP network (using interledger-rs)
 - [x] Try out [Interledger-rs API Specification](https://app.swaggerhub.com/apis/interledger-rs/Interledger/1.1) locally
 - [ ] Build a demo web app to submit ILP SPSP Invoice
+- [x] Understand and deploy [moneyd](https://github.com/interledgerjs/moneyd) and start a local testnet
+- [ ] Enable applications that run on top of Interledger, using [ilp-plugin](https://www.npmjs.com/package/ilp-plugin) NPM package
 - [ ] Auxillary: Deploy and run a JavaScript [ILP connector](https://github.com/interledgerjs/ilp-connector)
 - [ ] Auxillary: Connect ILP connector to Interledger
 - [ ] Auxillary: Connect web app to ILP connector
@@ -156,16 +158,17 @@ You can try out cURL commands in [check_balance_curl.sh](scripts/check_balances_
 
 TODO
 
-# Understand and deploy moneyd and start a local testnet
+# Understand and deploy [moneyd](https://github.com/interledgerjs/moneyd) and start a local testnet
 
-TBC
+Installed `moneyd` and `ilp-plugin`
+Default listening port at `7768`.
 
 ## Function
 
-- Connect to Interledger community network (not livenet)
-- Enable applications that run on top of Interledger, using [ilp-plugin](https://www.npmjs.com/package/ilp-plugin) NPM package
+- [x] Create Local Test Network
+- [ ] Enable applications that run on top of Interledger, using [ilp-plugin](https://www.npmjs.com/package/ilp-plugin) NPM package
 
-(Read through the repo, looks like a dead project, TBD)
+(Read through the repo, looks like a dead project, instructions not found yet)
 
 # Deploy and run a ILP connector
 

@@ -87,7 +87,7 @@ docker run -d \
   --platform linux/amd64 \
   --name bob-node \
   --network local-ilp \
-  --publish 7870:7770 \
+  --publish 8770:7770 \
   -e "RUST_LOG=interledger=trace" \
   interledgerrs/ilp-node \
   --ilp_address example.bob \
@@ -115,7 +115,7 @@ docker run -d \
   --platform linux/amd64 \
   --name charlie-node \
   --network local-ilp \
-  --publish 7970:7770 \
+  --publish 9770:7770 \
   -e "RUST_LOG=interledger=trace" \
   interledgerrs/ilp-node \
   --secret_seed 1232362131122139900555208458637022875563691455429373719368053354 \
