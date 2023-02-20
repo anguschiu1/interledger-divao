@@ -150,7 +150,7 @@ Run [stop_and_remove](scripts/stop_and_remove.sh) to tear down dockers.
 
 # Try out [Interledger-rs API Specification](https://app.swaggerhub.com/apis/interledger-rs/Interledger/1.1) locally
 
-In this example, we published port 7770 of docker container `alice-node`, `bob-node` and `charlie-node` as localhost port `7770`,`7870` and `7970` respectively, we can use HTTP REST API to communicate with these ILP nodes.
+In this example, we published port 7770 of docker container `alice-node`, `bob-node` and `charlie-node` as localhost port `7770`,`8770` and `9770` respectively, we can use HTTP REST API to communicate with these ILP nodes.
 
 You can try out cURL commands in [check_balance_curl.sh](scripts/check_balances_curl.sh)
 
