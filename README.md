@@ -5,12 +5,34 @@
 - [x] Understand and deploy moneyd and start a local testnet
 - [x] Spin up local ILP network (using interledger-rs)
 - [x] Try out [Interledger-rs API Specification](https://app.swaggerhub.com/apis/interledger-rs/Interledger/1.1) locally
+- [x] Spin up [Rafiki](https://github.com/interledger/rafiki) on local environment
+- [x] Understand and make use of Open payment paradigm on Rafiki deployment
+- [x] Establish eCommerce demo local environment
+- [x] Execute eCommerce local demo using API
 - [ ] Build a demo web app to submit ILP SPSP Invoice
-- [x] Understand and deploy [moneyd](https://github.com/interledgerjs/moneyd) and start a local testnet
-- [ ] Enable applications that run on top of Interledger, using [ilp-plugin](https://www.npmjs.com/package/ilp-plugin) NPM package
-- [ ] Auxillary: Deploy and run a JavaScript [ILP connector](https://github.com/interledgerjs/ilp-connector)
-- [ ] Auxillary: Connect ILP connector to Interledger
-- [ ] Auxillary: Connect web app to ILP connector
+- [x] ~~Understand and deploy [moneyd](https://github.com/interledgerjs/moneyd) and start a local testnet~~
+- [ ] ~~Enable applications that run on top of Interledger, using [ilp-plugin](https://www.npmjs.com/package/ilp-plugin) NPM package~~
+- [ ] ~~Auxillary: Deploy and run a JavaScript [ILP connector](https://github.com/interledgerjs/ilp-connector)~~
+- [ ] ~~Auxillary: Connect ILP connector to Interledger~~
+- [ ] ~~Auxillary: Connect web app to ILP connector~~
+
+## Demo details
+
+Please refers here to see an example using [Rafiki stack](./rafiki-divao-demo/#%20Demo%20Playbook.md)
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+### (Documentation below this line belongs to effort about deprecated implementations and are discarded)
 
 # Basic testnet wallet operation
 
