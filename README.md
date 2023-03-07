@@ -18,7 +18,7 @@
 
 ## Demo details
 
-Please refers here to see an example using [Rafiki stack](./rafiki-divao-demo/#%20Demo%20Playbook.md)
+Please refers here to see an example using [Rafiki stack](./rafiki-divao-demo/demo-playbook.md)
 
 ---
 
