@@ -24,14 +24,6 @@ Please refers here to see an example using [Rafiki stack](./rafiki-divao-demo/de
 
 ---
 
----
-
----
-
----
-
----
-
 ### (Documentation below this line belongs to effort about deprecated implementations and are discarded)
 
 # Basic testnet wallet operation
