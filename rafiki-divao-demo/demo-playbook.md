@@ -31,12 +31,12 @@ You can use following links to see if the testing environment is running properl
 sequenceDiagram
 autonumber
 Actor Gr as Grace
-box green backend
+box Green backend
 participant B as Grace's ASP
 participant BA as Grace's ASP auth host
 end
 participant WWW as Shoe Shop web front-end
-box blue peer-backend
+box Blue peer-backend
 participant P as Philip's ASP
 participant PA as Philip's ASP auth host
 end
