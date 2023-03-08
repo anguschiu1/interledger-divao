@@ -12,16 +12,76 @@ You can use following links to see if the testing environment is running properl
 
 ### Checking accounts on account service provider
 
-[Primary account service provider](http://localhost:3030)
+[Backend account service provider](http://localhost:3030)
 
 1. Grace Franklin https://backend/accounts/gfranklin 40.00 USD
 2. Bert Hamchest https://backend/accounts/bhamchest 40.00 USD
 3. World's Best Donut Co https://backend/accounts/wbdc 20.00 USD
 
-[Peer account service provider](http://localhost:3031)
+[Peer backend account service provider](http://localhost:3031)
 
 1. Philip Fry https://peer-backend/accounts/pfry 0.01 USD
 2. PlanEx Corp https://peer-backend/accounts/planex 20.00 USD
+
+## Demo details
+
+### Scenario: Grace buy shoes from Shoe Shop, hence Philip "pull" money from Grace account to his account.
+
+```mermaid
+sequenceDiagram
+autonumber
+Actor Gr as Grace
+box green backend
+participant B as Grace's ASP
+participant BA as Grace's ASP auth host
+end
+participant WWW as Shoe Shop web front-end
+box blue peer-backend
+participant P as Philip's ASP
+participant PA as Philip's ASP auth host
+end
+Gr->>+WWW: Trigger the checkout process
+WWW->>+PA: "Incoming payment grant" request
+PA-->>-WWW: Access token granted
+WWW-)+P: Create incoming payment
+P--)-WWW: Incoming amount, INV no. returned
+WWW->>+BA: "Quote + Outgoing Payment Grant" request
+BA-->>WWW: Redirect URL provided
+WWW->>BA: Browser redirect to Grace's ASP consent popup
+Gr->>+BA: Grace consent the outgoing amount and quote
+BA--)-Gr: Inform amount to be deducted
+BA->>-WWW: "interact_ref" returned
+WWW->>+BA: Continuing "Quote + Outgoing Payment grant" request with "interact_ref"
+BA-->>-WWW: Access token granted
+WWW->>+B: Create a quote with "incomingPaymentId"
+B-->>-WWW: Quotes details, e.g. "receiveAmount" and "sendAmount" returned
+WWW->>+B: Create outgoing payment to Philip's payment pointer and quoteId
+B-->>-WWW: Outgoing payment generated (INV No., paymentPointer,quoteId)
+Note over B, P: ILP nodes exchange payment info and adjust account balances
+
+
+
+```
+
+Use the [Postman eCommerce collection](https://www.postman.com/interledger/workspace/interledger/folder/22855701-e27838da-dd72-4b5e-9f1e-086ddfa4d098) to run through below steps.
+
+1. Philip and Grace has accounts on separate **account service provider** (namely `peer-backend` and `backend`), with payment pointer linked to their accounts
+2. Philip fires a **incoming payment grant request** (#2), to acquire access token necessary to carry out incoming payment
+3. Philip fires a **incoming payement** (#4) (a.k.a. generate invoice), to specify the expectation of 33.64USD will come in.
+4. Grace fires a **quote and outgoing payment grant request** (#6) to her `backend` ASP.
+   - On the response, the `redirect` URL in the payload will instruct front-end to redirect Grace to outgoing payment consent page of `backend`.
+   - Grace consents and generate `interactive_ref`, triggers **continuation request** (#12) to fire using the `interactive_ref` is used as payload, and the access token is generated
+5. Grace **create a quote** (#14) by the access token acquired
+6. Grace create **outgoing payment** (#16) by `quoteId` acquired BEFORE token expire (5, min)
+
+Now, Grace's account is deducted to Philip's account, as shown in [backend](http://localhost:3030) and [peer-backend](http://localhost:3031)
+
+## Problems
+
+- API Payload Schema changed but no documentation. E.g.
+  - To create payment pointer use API, no where to find `assetId` value, that need to be achieve by guesstimation.
+- Some operation is time limited but not mentioned
+- Several set of samples in Interledger Postman Collection, but only one set is working
 
 ### Query to account service providers
 
@@ -75,26 +135,3 @@ Expected response:
   }
 }
 ```
-
-## Demo details
-
-### Scenario: Grace buy shoes from Shoe Shop, hence Philip "pull" money from Grace account to his account.
-
-Use the [Postman eCommerce collection](https://www.postman.com/interledger/workspace/interledger/folder/22855701-e27838da-dd72-4b5e-9f1e-086ddfa4d098) to run through below steps.
-
-1. Philip and Grace has accounts on separate **account service provider** (named `backend` and `peer-backend`), with payment pointer linked to their accounts
-2. Philip fires a **incoming payment grant request**, to acquire access token necessary to carry out incoming payment
-3. Philip fires a **incoming payement** (a.k.a. invoice), to specify the expectation of 33.64USD will come in.
-4. Grace fires a **quote and outgoing payment grant request** to `peer-backend`
-   - On the response, the `redirect` URL in the payload will guide Grace to consent on the outgoing payment
-   - Grace consents and generate `interactive_ref`, triggers **continuation request** to fire using the `interactive_ref` is used as payload, and the access token is generated
-5. Grace **create a quote** by the access token acquired
-6. Grace create **outgoing payment** by `quoteId` acquired BEFORE token expire (5 min)
-7. Now Grace's account is deducted while Philip's account is added with money, as shown in [backend](http://localhost:3030) and [peer-backend](http://localhost:3031)
-
-## Problems
-
-- API Payload Schema changed but no documentation. E.g.
-  - To create payment pointer use API, no where to find `assetId` value, that need to be achieve by guesstimation.
-- Some operation is time limited but not mentioned
-- Several set of samples in Interledger Postman Collection, but only one set is working
