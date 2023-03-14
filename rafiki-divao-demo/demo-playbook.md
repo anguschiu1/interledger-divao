@@ -2,7 +2,7 @@
 
 ## Pre-requisite
 
-1. Please follow [Rafiki local playground setup](https://github.com/interledger/rafiki/blob/main/infrastructure/local/README.md) to install two ILP node, (a.k.a. account service provider), `backend` and `peer-backend`, in local environment.
+1. Please follow [Rafiki local playground setup](https://github.com/interledger/rafiki/blob/main/infrastructure/local/README.md) to install two ILP node, (a.k.a. account service provider), `backend` and `happy-life-bank-backend`, in local environment.
 2. Docker, pnpm, node 18 and NVM are required during installation.
 3. Install Postman to access [Interledger](https://www.postman.com/interledger/workspace/interledger/collection/22855701-92761441-6d0c-4fc6-aa04-73eccf6afd4c?action=share&creator=1697784) public API collection, and fork it out to run locally.
 
@@ -14,14 +14,14 @@ You can use following links to see if the testing environment is running properl
 
 [Backend account service provider](http://localhost:3030)
 
-1. Grace Franklin https://backend/accounts/gfranklin 40.00 USD
-2. Bert Hamchest https://backend/accounts/bhamchest 40.00 USD
-3. World's Best Donut Co https://backend/accounts/wbdc 20.00 USD
+1. Grace Franklin https://cloud-nine-wallet-backend/accounts/gfranklin 40.00 USD
+2. Bert Hamchest https://cloud-nine-wallet-backend/accounts/bhamchest 40.00 USD
+3. World's Best Donut Co https://cloud-nine-wallet-backend/accounts/wbdc 20.00 USD
 
 [Peer backend account service provider](http://localhost:3031)
 
-1. Philip Fry https://peer-backend/accounts/pfry 0.01 USD
-2. PlanEx Corp https://peer-backend/accounts/planex 20.00 USD
+1. Philip Fry https://happy-life-bank-backend/accounts/pfry 0.01 USD
+2. PlanEx Corp https://happy-life-bank-backend/accounts/planex 20.00 USD
 
 ## Demo details
 
@@ -61,7 +61,7 @@ Note over B, P: ILP nodes exchange payment info and adjust account balances
 
 Use the [Postman eCommerce collection](https://www.postman.com/interledger/workspace/interledger/folder/22855701-e27838da-dd72-4b5e-9f1e-086ddfa4d098) to run through below steps.
 
-1. Philip and Grace has accounts on separate **account service provider** (namely `peer-backend` and `backend`), with payment pointer linked to their accounts
+1. Philip and Grace has accounts on separate **account service provider** (namely `happy-life-bank-backend` and `backend`), with payment pointer linked to their accounts
 2. Philip fires a **incoming payment grant request** (#2), to acquire access token necessary to carry out incoming payment
 3. Philip fires a **incoming payement** (#4) (a.k.a. generate invoice), to specify the expectation of 33.64USD will come in.
 4. Grace fires a **quote and outgoing payment grant request** (#6) to her `backend` ASP.
@@ -70,7 +70,7 @@ Use the [Postman eCommerce collection](https://www.postman.com/interledger/works
 5. Grace **create a quote** (#14) by the access token acquired
 6. Grace create **outgoing payment** (#16) by `quoteId` acquired BEFORE token expire (5, min)
 
-Now, Grace's account is deducted to Philip's account, as shown in [backend](http://localhost:3030) and [peer-backend](http://localhost:3031)
+Now, Grace's account is deducted to Philip's account, as shown in [backend](http://localhost:3030) and [happy-life-bank-backend](http://localhost:3031)
 
 ## Problems
 
@@ -82,7 +82,7 @@ Now, Grace's account is deducted to Philip's account, as shown in [backend](http
 ### Query to account service providers
 
 - [Graphql query](http://localhost:3001/graphql) to Primary account service provider, `backend`
-- [Graphql query](http://localhost:4001/graphql) to Peer account service provider, `peer-backend`
+- [Graphql query](http://localhost:4001/graphql) to Peer account service provider, `happy-life-bank-backend`
 
 e.g Create a new payment pointer using Graphql query
 
