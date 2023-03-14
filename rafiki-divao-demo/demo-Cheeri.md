@@ -34,6 +34,6 @@ CBE->>+AP: Create outgoing payment to Impact Org's payment pointer and quoteId
 AP-->>-CBE: Outgoing payment generated (INV No., paymentPointer,quoteId)
 Note over AP, IA: ILP nodes exchange payment info and adjust account balances
 CBE-->>CFE: Payment execution status update
-CFE-->>F: Inform Impact Funder latest payment status
-CFE-->>I: Inform Impact Funder latest payment status
+CFE-->>F: Push message: balance updated
+CFE-->>I: Push message: balance updated
 ```
