@@ -2,7 +2,7 @@
 
 ## Pre-requisite
 
-1. Please follow [Rafiki local playground setup](https://github.com/interledger/rafiki/blob/main/infrastructure/local/README.md) to install two ILP node, (a.k.a. account service provider), `backend` and `happy-life-bank-backend`, in local environment.
+1. Please follow [Rafiki local playground setup](https://github.com/interledger/rafiki/blob/main/infrastructure/local/README.md) to install two ILP node, (a.k.a. account service provider), `cloud-nine-wallet-backend` and `happy-life-bank-backend`, in local environment.
 2. Docker, pnpm, node 18 and NVM are required during installation.
 3. Install Postman to access [Interledger](https://www.postman.com/interledger/workspace/interledger/collection/22855701-92761441-6d0c-4fc6-aa04-73eccf6afd4c?action=share&creator=1697784) public API collection, and fork it out to run locally.
 
@@ -33,7 +33,7 @@ autonumber
 Actor Gr as Grace
 participant B as Grace's ASP
 participant BA as Grace's ASP auth host
-participant WWW as Shoe Shop web front-end
+participant WWW as Shoe Shop web app (FE+BE)
 participant P as Philip's ASP
 participant PA as Philip's ASP auth host
 Gr->>+WWW: Trigger the checkout process
@@ -61,16 +61,18 @@ Note over B, P: ILP nodes exchange payment info and adjust account balances
 
 Use the [Postman eCommerce collection](https://www.postman.com/interledger/workspace/interledger/folder/22855701-e27838da-dd72-4b5e-9f1e-086ddfa4d098) to run through below steps.
 
-1. Philip and Grace has accounts on separate **account service provider** (namely `happy-life-bank-backend` and `backend`), with payment pointer linked to their accounts
-2. Philip fires a **incoming payment grant request** (#2), to acquire access token necessary to carry out incoming payment
-3. Philip fires a **incoming payement** (#4) (a.k.a. generate invoice), to specify the expectation of 33.64USD will come in.
-4. Grace fires a **quote and outgoing payment grant request** (#6) to her `backend` ASP.
-   - On the response, the `redirect` URL in the payload will instruct front-end to redirect Grace to outgoing payment consent page of `backend`.
-   - Grace consents and generate `interactive_ref`, triggers **continuation request** (#12) to fire using the `interactive_ref` is used as payload, and the access token is generated
-5. Grace **create a quote** (#14) by the access token acquired
-6. Grace create **outgoing payment** (#16) by `quoteId` acquired BEFORE token expire (5, min)
+In this eCommerce Demo, Philip and Grace has accounts on separate **account service provider** (namely `happy-life-bank-backend` and `cloud-nine-wallet-backend`), with payment pointer linked to their accounts.
 
-Now, Grace's account is deducted to Philip's account, as shown in [backend](http://localhost:3030) and [happy-life-bank-backend](http://localhost:3031)
+1. Grace reach Shoe shop Wep app and initiate checkout process (#1)
+2. Philip fires a **incoming payment grant request** (#2,#3), to acquire access token necessary to carry out incoming payment
+3. Philip fires a **incoming payement** (#4,#5) (a.k.a. generate invoice), to specify the expectation of 33.64USD will come in.
+4. Grace fires a **quote and outgoing payment grant request** (#6) to her `cloud-nine-wallet-backend` ASP.
+   - On the response (#7), the `redirect` URL in the payload is used to instruct front-end to redirect Grace to outgoing payment consent page of `cloud-nine-wallet-backend` Auth host (#8).
+   - Grace consents (#9,#10) and generate `interactive_ref`, `cloud-nine-wallet-backend` Auth host redirect browser back to Shoe Shop web app (#11), and triggers **continuation request** (#12) using the `interactive_ref`, and the access token is acquired (#13)
+5. Grace **create a quote** (#14,#15) by the access token acquired
+6. Grace create **outgoing payment** (#16,#17) by `quoteId` acquired BEFORE token expire (5, min)
+
+Now, Grace's account is deducted to Philip's account, as shown in [cloud-nine-wallet-backend](http://localhost:3030) and [happy-life-bank-backend](http://localhost:3031)
 
 ## Problems
 
@@ -81,7 +83,7 @@ Now, Grace's account is deducted to Philip's account, as shown in [backend](http
 
 ### Query to account service providers
 
-- [Graphql query](http://localhost:3001/graphql) to Primary account service provider, `backend`
+- [Graphql query](http://localhost:3001/graphql) to Primary account service provider, `cloud-nine-wallet-backend`
 - [Graphql query](http://localhost:4001/graphql) to Peer account service provider, `happy-life-bank-backend`
 
 e.g Create a new payment pointer using Graphql query
