@@ -39,8 +39,8 @@ participant PA as Philip's ASP auth host
 Gr->>+WWW: Trigger the checkout process
 WWW->>+PA: "Incoming payment grant" request
 PA-->>-WWW: Access token granted
-WWW-)+P: Create incoming payment
-P--)-WWW: Incoming amount, INV no. returned
+WWW-)+P: Create incoming payment with INV no. provided
+P--)-WWW: Incoming amount,
 WWW->>+BA: "Quote + Outgoing Payment Grant" request
 BA-->>WWW: Redirect URL provided
 WWW->>BA: Browser redirect to Grace's ASP consent popup
@@ -74,12 +74,331 @@ In this eCommerce Demo, Philip and Grace has accounts on separate **account serv
 
 Now, Grace's account is deducted to Philip's account, as shown in [cloud-nine-wallet-backend](http://localhost:3030) and [happy-life-bank-backend](http://localhost:3031)
 
+## Payload examples
+
+### Grant Request Incoming Payment
+
+Request (#2)
+
+```javascript
+{
+    "access_token": {
+        "access": [
+            {
+                "type": "incoming-payment",
+                "actions": [
+                    "create", "read", "list", "complete"
+                ]
+            }
+        ]
+    },
+    "client": "https://happy-life-bank-backend/accounts/pfry",
+    "interact": {
+        "start": [
+            "redirect"
+        ],
+        "finish": {
+            "method": "redirect",
+            "uri": "http://localhost:3030/mock-idp/fake-client",
+            "nonce": "123"
+        }
+    }
+}
+```
+
+Response (#3)
+
+```javascript
+{
+    "access_token": {
+        "access": [
+            {
+                "actions": [
+                    "create",
+                    "read",
+                    "list",
+                    "complete"
+                ],
+                "type": "incoming-payment"
+            }
+        ],
+        "value": "5B9BC99E1CE75BE12F05",
+        "manage": "http://localhost:4006/token/e1af2804-4857-4739-a8d0-15ab05ae0537",
+        "expires_in": 600
+    },
+    "continue": {
+        "access_token": {
+            "value": "DBA5DB390928A27D19FC"
+        },
+        "uri": "http://localhost:4006/continue/86c1df2e-97f2-4781-8024-a037873ee9e9"
+    }
+}
+```
+
+### Create Incoming Payment
+
+Request payload (#4)
+
+```javascript
+{
+    "incomingAmount": {
+        "value": "3364",
+        "assetCode": "USD",
+        "assetScale": 2
+    },
+    "expiresAt": "{{tomorrow}}",
+    "description": "Purchase Shoe Shop",
+    "externalRef": "#INV2022-8363828"
+}
+```
+
+Response (#5)
+
+```javascript
+{
+    "id": "https://happy-life-bank-backend/accounts/pfry/incoming-payments/249043ee-f99f-4bab-83b8-8b35876b4c83",
+    "paymentPointer": "https://happy-life-bank-backend/accounts/pfry",
+    "incomingAmount": {
+        "value": "3364",
+        "assetCode": "USD",
+        "assetScale": 2
+    },
+    "receivedAmount": {
+        "value": "0",
+        "assetCode": "USD",
+        "assetScale": 2
+    },
+    "completed": false,
+    "description": "Purchase Shoe Shop",
+    "externalRef": "#INV2022-8363828",
+    "createdAt": "2023-03-15T09:40:11.227Z",
+    "updatedAt": "2023-03-15T09:40:11.227Z",
+    "expiresAt": "2023-03-16T09:40:11.141Z",
+    "ilpStreamConnection": {
+        "id": "http://happy-life-bank-backend/connections/d75b0412-8af1-4028-b768-f1ee11ebc2dc",
+        "ilpAddress": "test.happy-life-bank.NNwgAWZFAwmqSfdM2QOqFEuVpSKsRnRNozUgAyxHtZpEzFpNR0CGlqvTCz02Y0dPnEwDrDk0rdF6MUFCHaCUkSR6kn09rNY",
+        "sharedSecret": "paqCi-Jhy2BXMSpafqXkdm0oopt7tjPQ92IWUqv991s",
+        "assetCode": "USD",
+        "assetScale": 2
+    }
+}
+```
+
+### Grant Request Quote + Outgoing Payment
+
+Request payload (#6)
+
+```javascript
+{
+    "access_token": {
+        "access": [
+            {
+                "type": "quote",
+                "actions": [
+                    "create", "read"
+                ]
+            },
+            {
+                "type": "outgoing-payment",
+                "actions": [
+                    "create", "read", "list"
+                ],
+                "identifier": "https://cloud-nine-wallet-backend/accounts/gfranklin",
+                "limits": {
+                    "sendAmount": {
+                        "value": "3600",
+                        "assetCode": "USD",
+                        "assetScale": 2
+                    },
+                    "receiveAmount": {
+                        "value": "3364",
+                        "assetCode": "USD",
+                        "assetScale": 2
+                    }
+                }
+            }
+        ]
+    },
+    "client": "https://happy-life-bank-backend/accounts/pfry",
+    "interact": {
+        "start": [
+            "redirect"
+        ],
+        "finish": {
+            "method": "redirect",
+            "uri": "http://localhost:3030/mock-idp/fake-client",
+            "nonce": "456"
+        }
+    }
+}
+```
+
+Response (#7)
+
+```javascript
+{
+    "interact": {
+        "redirect": "http://localhost:3006/interact/dcf02018-5c04-4c88-b3ba-36f18055edfa/4E9FF6EF1E0E8824?clientName=Philip+Fry&clientUri=https%3A%2F%2Fhappy-life-bank-backend%2Faccounts%2Fpfry",
+        "finish": "4E9FF6EF1E0E8824"
+    },
+    "continue": {
+        "access_token": {
+            "value": "ACC66190156307E830DE"
+        },
+        "uri": "http://localhost:3006/auth/continue/03243194-139a-4857-8b1f-13b1dcb0501f",
+        "wait": 5
+    }
+}
+```
+
+### Continuation Request
+
+Request URL
+
+`{{OpenPaymentsAuthHost}}/continue/{{continueId}}`
+
+e.g.
+`http://localhost:3006/continue/03243194-139a-4857-8b1f-13b1dcb0501f`
+
+Request payload (#12)
+
+```javascript
+{
+     "interact_ref": "984c4510-48df-402f-9457-ba57a5c9519c"
+}
+```
+
+Response payload (#13)
+
+```javascript
+{
+    "access_token": {
+        "access": [
+            {
+                "actions": [
+                    "create",
+                    "read"
+                ],
+                "type": "quote"
+            },
+            {
+                "actions": [
+                    "create",
+                    "read",
+                    "list"
+                ],
+                "identifier": "https://cloud-nine-wallet-backend/accounts/gfranklin",
+                "type": "outgoing-payment",
+                "limits": {
+                    "sendAmount": {
+                        "value": "3600",
+                        "assetCode": "USD",
+                        "assetScale": 2
+                    },
+                    "receiveAmount": {
+                        "value": "3364",
+                        "assetCode": "USD",
+                        "assetScale": 2
+                    }
+                }
+            }
+        ],
+        "value": "943B1134D8E8E19859B4",
+        "manage": "http://localhost:3006/token/a3c2deaa-4027-4f0d-b924-e726365ab130",
+        "expires_in": 600
+    },
+    "continue": {
+        "access_token": {
+            "value": "ACC66190156307E830DE"
+        },
+        "uri": "http://localhost:3006/continue/03243194-139a-4857-8b1f-13b1dcb0501f"
+    }
+}
+```
+
+### Create Quote
+
+Request payload (#14)
+
+```javascript
+{
+    "receiver": "https://happy-life-bank-backend/accounts/pfry/incoming-payments/{{incomingPaymentId}}"
+}
+```
+
+Response payload (#15)
+
+```javascript
+{
+    "id": "https://cloud-nine-wallet-backend/accounts/gfranklin/quotes/0f852211-d823-446a-8ae9-16fe9c7a259f",
+    "paymentPointer": "https://cloud-nine-wallet-backend/accounts/gfranklin",
+    "receiveAmount": {
+        "value": "3364",
+        "assetCode": "USD",
+        "assetScale": 2
+    },
+    "sendAmount": {
+        "value": "3565",
+        "assetCode": "USD",
+        "assetScale": 2
+    },
+    "receiver": "https://happy-life-bank-backend/accounts/pfry/incoming-payments/249043ee-f99f-4bab-83b8-8b35876b4c83",
+    "expiresAt": "2023-03-15T09:45:51.841Z",
+    "createdAt": "2023-03-15T09:40:51.841Z"
+}
+```
+
+### Create Outgoing Payment
+
+Request payload (#16)
+
+```javascript
+{
+    "quoteId": "{{gfranklinPaymentPointer}}/quotes/{{quoteId}}",
+    "description": "Your purchase at Shoe Shop",
+    "externalRef": "#INV2022-8363828"
+}
+```
+
+Response payload (#17)
+
+```javascript
+{
+    "id": "https://cloud-nine-wallet-backend/accounts/gfranklin/outgoing-payments/0f852211-d823-446a-8ae9-16fe9c7a259f",
+    "paymentPointer": "https://cloud-nine-wallet-backend/accounts/gfranklin",
+    "quoteId": "https://cloud-nine-wallet-backend/accounts/gfranklin/quotes/0f852211-d823-446a-8ae9-16fe9c7a259f",
+    "receiveAmount": {
+        "value": "3364",
+        "assetCode": "USD",
+        "assetScale": 2
+    },
+    "sendAmount": {
+        "value": "3565",
+        "assetCode": "USD",
+        "assetScale": 2
+    },
+    "sentAmount": {
+        "value": "0",
+        "assetCode": "USD",
+        "assetScale": 2
+    },
+    "receiver": "https://happy-life-bank-backend/accounts/pfry/incoming-payments/249043ee-f99f-4bab-83b8-8b35876b4c83",
+    "failed": false,
+    "externalRef": "#INV2022-8363828",
+    "description": "Your purchase at Shoe Shop",
+    "createdAt": "2023-03-15T09:40:54.617Z",
+    "updatedAt": "2023-03-15T09:40:54.716Z"
+}
+```
+
 ## Problems
 
 - API Payload Schema changed but no documentation. E.g.
   - To create payment pointer use API, no where to find `assetId` value, that need to be achieve by guesstimation.
 - Some operation is time limited but not mentioned
 - Several set of samples in Interledger Postman Collection, but only one set is working
+
+## Appendix
 
 ### Query to account service providers
 
