@@ -80,7 +80,7 @@ Now, Grace's account is deducted to Philip's account, as shown in [cloud-nine-wa
 
 Request (#2)
 
-```javascript
+```JSON
 {
     "access_token": {
         "access": [
@@ -108,7 +108,7 @@ Request (#2)
 
 Response (#3)
 
-```javascript
+```JSON
 {
     "access_token": {
         "access": [
@@ -139,7 +139,7 @@ Response (#3)
 
 Request payload (#4)
 
-```javascript
+```JSON
 {
     "incomingAmount": {
         "value": "3364",
@@ -154,7 +154,7 @@ Request payload (#4)
 
 Response (#5)
 
-```javascript
+```JSON
 {
     "id": "https://happy-life-bank-backend/accounts/pfry/incoming-payments/249043ee-f99f-4bab-83b8-8b35876b4c83",
     "paymentPointer": "https://happy-life-bank-backend/accounts/pfry",
@@ -188,7 +188,7 @@ Response (#5)
 
 Request payload (#6)
 
-```javascript
+```JSON
 {
     "access_token": {
         "access": [
@@ -235,7 +235,7 @@ Request payload (#6)
 
 Response (#7)
 
-```javascript
+```JSON
 {
     "interact": {
         "redirect": "http://localhost:3006/interact/dcf02018-5c04-4c88-b3ba-36f18055edfa/4E9FF6EF1E0E8824?clientName=Philip+Fry&clientUri=https%3A%2F%2Fhappy-life-bank-backend%2Faccounts%2Fpfry",
@@ -262,7 +262,7 @@ e.g.
 
 Request payload (#12)
 
-```javascript
+```JSON
 {
      "interact_ref": "984c4510-48df-402f-9457-ba57a5c9519c"
 }
@@ -270,7 +270,7 @@ Request payload (#12)
 
 Response payload (#13)
 
-```javascript
+```JSON
 {
     "access_token": {
         "access": [
@@ -320,7 +320,7 @@ Response payload (#13)
 
 Request payload (#14)
 
-```javascript
+```JSON
 {
     "receiver": "https://happy-life-bank-backend/accounts/pfry/incoming-payments/{{incomingPaymentId}}"
 }
@@ -328,7 +328,7 @@ Request payload (#14)
 
 Response payload (#15)
 
-```javascript
+```JSON
 {
     "id": "https://cloud-nine-wallet-backend/accounts/gfranklin/quotes/0f852211-d823-446a-8ae9-16fe9c7a259f",
     "paymentPointer": "https://cloud-nine-wallet-backend/accounts/gfranklin",
@@ -352,7 +352,7 @@ Response payload (#15)
 
 Request payload (#16)
 
-```javascript
+```JSON
 {
     "quoteId": "{{gfranklinPaymentPointer}}/quotes/{{quoteId}}",
     "description": "Your purchase at Shoe Shop",
@@ -362,7 +362,7 @@ Request payload (#16)
 
 Response payload (#17)
 
-```javascript
+```JSON
 {
     "id": "https://cloud-nine-wallet-backend/accounts/gfranklin/outgoing-payments/0f852211-d823-446a-8ae9-16fe9c7a259f",
     "paymentPointer": "https://cloud-nine-wallet-backend/accounts/gfranklin",
