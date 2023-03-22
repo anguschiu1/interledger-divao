@@ -31,11 +31,11 @@ You can use following links to see if the testing environment is running properl
 sequenceDiagram
 autonumber
 Actor Gr as Grace
-participant B as Grace's ASP
-participant BA as Grace's ASP auth host
+participant B as Grace's Resource Server
+participant BA as Grace's Auth Server
 participant WWW as Shoe Shop web app (FE+BE)
-participant P as Philip's ASP
-participant PA as Philip's ASP auth host
+participant P as Philip's Resource Server
+participant PA as Philip's Auth Server
 Gr->>+WWW: Trigger the checkout process
 WWW->>+PA: "Incoming payment grant" request
 PA-->>-WWW: Access token granted
@@ -43,7 +43,7 @@ WWW-)+P: Create incoming payment with INV no. provided
 P--)-WWW: Incoming amount,
 WWW->>+BA: "Quote + Outgoing Payment Grant" request
 BA-->>WWW: Redirect URL provided
-WWW->>BA: Browser redirect to Grace's ASP consent popup
+WWW->>BA: Browser redirect to Grace's Auth Server for consent popup
 Gr->>+BA: Grace consent the outgoing amount and quote
 BA--)-Gr: Inform amount to be deducted
 BA->>-WWW: "interact_ref" returned
@@ -54,9 +54,6 @@ B-->>-WWW: Quotes details, e.g. "receiveAmount" and "sendAmount" returned
 WWW->>+B: Create outgoing payment to Philip's payment pointer and quoteId
 B-->>-WWW: Outgoing payment generated (INV No., paymentPointer,quoteId)
 Note over B, P: ILP nodes exchange payment info and adjust account balances
-
-
-
 ```
 
 Use the [Postman eCommerce collection](https://www.postman.com/interledger/workspace/interledger/folder/22855701-e27838da-dd72-4b5e-9f1e-086ddfa4d098) to run through below steps.
@@ -66,9 +63,9 @@ In this eCommerce Demo, Philip and Grace has accounts on separate **account serv
 1. Grace reach Shoe shop Wep app and initiate checkout process (#1)
 2. Philip fires a **incoming payment grant request** (#2,#3), to acquire access token necessary to carry out incoming payment
 3. Philip fires a **incoming payement** (#4,#5) (a.k.a. generate invoice), to specify the expectation of 33.64USD will come in.
-4. Grace fires a **quote and outgoing payment grant request** (#6) to her `cloud-nine-wallet-backend` ASP.
-   - On the response (#7), the `redirect` URL in the payload is used to instruct front-end to redirect Grace to outgoing payment consent page of `cloud-nine-wallet-backend` Auth host (#8).
-   - Grace consents (#9,#10) and generate `interactive_ref`, `cloud-nine-wallet-backend` Auth host redirect browser back to Shoe Shop web app (#11), and triggers **continuation request** (#12) using the `interactive_ref`, and the access token is acquired (#13)
+4. Grace fires a **quote and outgoing payment grant request** (#6) to her `cloud-nine-wallet-backend` Resource Server.
+   - On the response (#7), the `redirect` URL in the payload is used to instruct front-end to redirect Grace to outgoing payment consent page of `cloud-nine-wallet-backend` Authorization Server (#8).
+   - Grace consents (#9,#10) and generate `interactive_ref`, `cloud-nine-wallet-backend` Authorization Server redirect browser back to Shoe Shop web app (#11), and triggers **continuation request** (#12) using the `interactive_ref`, and the access token is acquired (#13)
 5. Grace **create a quote** (#14,#15) by the access token acquired
 6. Grace create **outgoing payment** (#16,#17) by `quoteId` acquired BEFORE token expire (5, min)
 

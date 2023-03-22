@@ -10,10 +10,10 @@ autonumber
 actor F as Funders
 participant ChFE as Cheeri Web Frontend
 participant ChBE as Cheeri Web Backend
-participant ChASP as Cheeri ASP
-participant ChASPA as Cheeri ASP AuthHost
-participant ImOASPAuth as Impact Orgs ASP AuthHost
-participant ImOASP as Impact Orgs ASP
+participant ChASP as Cheeri Resource Server
+participant ChASPA as Cheeri Auth Server
+participant ImOASPAuth as Impact Orgs Auth Server
+participant ImOASP as Impact Orgs Resource Server
 actor I as Impact Orgs
 
 I--)+ChFE: Set Impact Goals

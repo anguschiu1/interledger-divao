@@ -12,7 +12,13 @@
 - [x] Refresh Open Payment eCommerce demo flow and [instructions](rafiki-divao-demo/demo-playbook.md)
 - [x] (proposing) Demo Cheeri webapp [Sequence diagram](rafiki-divao-demo/demo-Cheeri.md) using Open Payment
 - [x] [HL sequence diagram](rafiki-divao-demo/cheeri-AP.md) about Cheeri incorporate with AgnostiPay
-- [ ] Build a demo web app to Demo Open Payment using Rafiki deployment
+- [ ] Build a demo web app to Demo Open Payment using Rafiki deployment (WIP)
+- [x] Trial locally build and deploy Open Payment backend as packages, got reply from [Rafiki](https://github.com/interledger/rafiki/issues/1217) team
+
+## Open Payment API
+
+1. Sample code can be found [here](https://github.com/interledger/rafiki/tree/main/packages/open-payments).
+2. (TODO) In addition to "pull" type transaction, Open Payment API should also support "push" type transaction.
 
 ## Demo details
 
