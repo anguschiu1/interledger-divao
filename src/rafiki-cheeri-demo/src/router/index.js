@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import SetFunding from '../components/SetFunding.vue'
 import SetGoals from '../components/SetGoals.vue'
 import ConfirmFunding from '../components/ConfirmFunding.vue'
@@ -8,11 +7,6 @@ import ShowTransactions from '../views/ShowTransactions.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
     {
       path: '/txns',
       name: 'show transactions',

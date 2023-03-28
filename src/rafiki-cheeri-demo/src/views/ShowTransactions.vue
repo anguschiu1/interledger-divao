@@ -1,3 +1,19 @@
+<script>
+const API_URL = `http://localhost:4000/accounts/`
+export default {
+  data: () => ({
+    accountId: 'pfry',
+    commits: null
+  }),
+  methods: {
+    async fetchData() {
+      const url = `${API_URL}${this.accountId}`
+      this.commits = await (await fetch(url)).json()
+    }
+  }
+}
+</script>
+
 <template>
   <div class="greetings">
     <h1 class="green">Transactions shown here.</h1>

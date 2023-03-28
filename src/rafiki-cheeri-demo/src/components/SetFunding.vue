@@ -18,9 +18,9 @@ export default {
     <h3>
       Amount:
       <input type="range" min="0" max="100" step="1" v-model="value" />
-      <input type="number" v-model="value" />
-      <button @click="Send()">Send money</button>
     </h3>
+    <input type="number" v-model="value" />
+    <button @click="Send()">Send money</button>
   </div>
 </template>
 

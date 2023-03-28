@@ -1,31 +1,29 @@
 <script>
-import ConfirmFunding from './ConfirmFunding.vue'
 export default {
   data() {
     return {
-      value: 0
+      value: 0,
+      message: null
     }
   },
   methods: {
     Send() {
-      this.message = 'sending money...'
+      this.message = 'Goal set'
     }
   },
-  components: { ConfirmFunding }
+  components: {}
 }
 </script>
 <template>
   <div class="greetings">
-    <h1 class="green">Fund setup</h1>
+    <h1 class="green">Setup Impact Goals</h1>
     <h3>
-      Amount:
       <input type="range" min="0" max="100" step="1" v-model="value" />
       <input type="number" v-model="value" />
-      <button @click="value++">Value set to {{ value }}</button>
-      <button @click="Send()">Send money</button>
+      <button @click="Send()">Set</button>
     </h3>
+    <h1>{{ this.message }}</h1>
   </div>
-  <ConfirmFunding></ConfirmFunding>
 </template>
 
 <style scoped>
