@@ -8,8 +8,9 @@ import { RouterLink, RouterView } from 'vue-router'
 
     <div class="wrapper">
       <nav>
-        <RouterLink to="/set_funding">Setup Streaming payout to Impact Orgs</RouterLink>
-        <RouterLink to="/show_txns">Show Transactions</RouterLink>
+        <router-link to="/set.funding">Setup Streaming payout to Impact Orgs</router-link>
+        <router-link to="/confirm.funding/54">confirm funding</router-link>
+        <RouterLink to="/show.txns">Show Transactions</RouterLink>
         <!-- <RouterLink to="/set_goals">Set Impact Goals</RouterLink> -->
       </nav>
     </div>

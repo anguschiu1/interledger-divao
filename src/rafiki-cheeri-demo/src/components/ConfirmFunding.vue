@@ -2,6 +2,14 @@
 export default {
   props: {
     amount: { type: String, required: true }
+  },
+  methods: {
+    SendMoney() {
+      this.$router.push({ path: '/' })
+    },
+    ReturnToMainPage() {
+      this.$router.push({ path: '/' })
+    }
   }
 }
 </script>
@@ -9,7 +17,8 @@ export default {
   <div class="greetings">
     <h2 class="green">{{ parseInt(this.amount) || 'Nothing' }} will be sent to ABC, confirm?</h2>
     <h3>
-      <button :disabled="false" @click="dialog1.reveal">Click to Show Modal Dialog</button>
+      <button :disabled="false" @click="SendMoney">OK</button>
+      <button :disabled="false" @click="ReturnToMainPage">Cancel</button>
     </h3>
   </div>
 </template>

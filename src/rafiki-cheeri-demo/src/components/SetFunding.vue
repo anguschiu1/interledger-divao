@@ -2,12 +2,12 @@
 export default {
   data() {
     return {
-      value: 0
+      amount: 0
     }
   },
   methods: {
     Send() {
-      this.$router.push({ path: '/confirm_funding', query: { v: this.value } })
+      this.$router.push({ name: 'confirm.funding', params: { amount: this.amount } })
     }
   }
 }
@@ -17,9 +17,9 @@ export default {
     <h1 class="green">Fund setup</h1>
     <h3>
       Amount:
-      <input type="range" min="0" max="100" step="1" v-model="value" />
+      <input type="range" min="0" max="100" step="1" v-model="amount" />
     </h3>
-    <input type="number" v-model="value" />
+    <input type="number" v-model="amount" />
     <button @click="Send()">Send money</button>
   </div>
 </template>
