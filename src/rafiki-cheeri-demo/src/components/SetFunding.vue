@@ -14,12 +14,10 @@ export default {
 </script>
 <template>
   <div class="greetings">
-    <h1 class="green">Fund setup</h1>
-    <h3>
-      Amount:
-      <input type="range" min="0" max="100" step="1" v-model="amount" />
-    </h3>
-    <input type="number" v-model="amount" />
+    <h1 class="green">Setup Payment</h1>
+    Amount:
+    <input type="range" min="0" max="100" step="1" v-model="amount" />
+    <input type="text" v-model="amount" />
     <button @click="Send()">Send money</button>
   </div>
 </template>

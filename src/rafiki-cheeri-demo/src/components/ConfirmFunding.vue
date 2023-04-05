@@ -15,7 +15,7 @@ export default {
 </script>
 <template>
   <div class="greetings">
-    <h2 class="green">{{ parseInt(this.amount) || 'Nothing' }} will be sent to ABC, confirm?</h2>
+    <h2>{{ parseInt(this.amount) || 'Nothing' }} will be sent to ABC, confirm?</h2>
     <h3>
       <button :disabled="false" @click="SendMoney">OK</button>
       <button :disabled="false" @click="ReturnToMainPage">Cancel</button>

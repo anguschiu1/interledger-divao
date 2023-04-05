@@ -4,16 +4,9 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/cheeri.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <nav>
-        <router-link to="/set.funding">Setup Streaming payout to Impact Orgs</router-link>
-        <router-link to="/confirm.funding/54">confirm funding</router-link>
-        <RouterLink to="/show.txns">Show Transactions</RouterLink>
-        <!-- <RouterLink to="/set_goals">Set Impact Goals</RouterLink> -->
-      </nav>
-    </div>
+    <RouterLink to="/"
+      ><img alt="Vue logo" class="logo" src="@/assets/cheeri.svg" width="250" height="125"
+    /></RouterLink>
   </header>
 
   <RouterView />

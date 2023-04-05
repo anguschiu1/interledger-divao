@@ -1,14 +1,18 @@
 <script>
-const API_URL = `http://localhost:4000/accounts/`
 export default {
   data: () => ({
     accountId: 'pfry',
     commits: null
   }),
   methods: {
-    async fetchData() {
-      const url = `${API_URL}${this.accountId}`
-      this.commits = await (await fetch(url)).json()
+    setupFundPayment() {
+      this.$router.push({ name: 'set.funding' })
+    },
+    showTxns() {
+      this.$router.push({
+        name: 'show.txns',
+        params: { accountId: this.accountId, paymentType: 'outgoing-payments' }
+      })
     }
   }
 }
@@ -16,8 +20,9 @@ export default {
 
 <template>
   <div class="greetings">
-    <h1 class="green">Hello</h1>
     <h3>Please select action at the menu.</h3>
+    <button type="button" @click="setupFundPayment">Setup Fund Payment</button>
+    <button type="button" @click="showTxns">Show Transactions</button>
   </div>
 </template>
 

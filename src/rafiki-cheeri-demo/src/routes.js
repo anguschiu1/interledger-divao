@@ -38,9 +38,10 @@ const router = createRouter({
       props: true
     },
     {
-      path: '/show.txns',
+      path: '/show.txns/:accountId/:paymentType',
       name: 'show.txns',
-      component: ShowTransactions
+      component: ShowTransactions,
+      props: true
     }
   ]
 })
