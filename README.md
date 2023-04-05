@@ -25,6 +25,11 @@
 
 Please refers here to see an example using [Rafiki stack](./rafiki-divao-demo/demo-playbook.md)
 
+## Running Cheeri-OpenPayment demo web app on local
+
+1. On `src/rafiki-cheeri-demo` folder, run `npm i` and then run `npm run dev`
+2. Visit the front end by `http://localhost:5173/`
+
 ---
 
 ---

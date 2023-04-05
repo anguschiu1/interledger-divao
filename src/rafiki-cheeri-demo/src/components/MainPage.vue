@@ -1,7 +1,7 @@
 <script>
 export default {
   data: () => ({
-    accountId: 'pfry',
+    accountId: 'gfranklin',
     commits: null
   }),
   methods: {
