@@ -11,26 +11,15 @@ export default {
     fetchedData: null
   }),
   created() {
-    // this.fetchData()
+    this.fetchData()
   },
   methods: {
     async fetchData() {
       var url = `${API_URL}`
 
       const options = {
-        method: 'GET',
-        headers: { accept: 'application/json', Host: 'cloud-nine-wallet-backend' },
-        mode: 'cors'
+        method: 'GET'
       }
-
-      // var myHeaders = new Headers()
-      // myHeaders.append('Host', 'cloud-nine-wallet-backend')
-      // myHeaders.append('Accept', 'application/json')
-
-      // var requestOptions = {
-      //   method: 'GET',
-      //   headers: myHeaders
-      // }
 
       await fetch(url, options)
         .then((response) => response.text())
