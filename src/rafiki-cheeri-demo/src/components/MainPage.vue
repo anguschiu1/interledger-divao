@@ -13,6 +13,12 @@ export default {
         name: 'show.txns',
         params: { accountId: this.accountId, paymentType: 'outgoing-payments' }
       })
+    },
+    showPaymentPointer() {
+      this.$router.push({
+        name: 'show.payment.pointer',
+        params: { accountId: this.accountId }
+      })
     }
   }
 }
@@ -23,6 +29,7 @@ export default {
     <h3>Please select action at the menu.</h3>
     <button type="button" @click="setupFundPayment">Setup Fund Payment</button>
     <button type="button" @click="showTxns">Show Transactions</button>
+    <button type="button" @click="showPaymentPointer">Show Payment Pointer</button>
   </div>
 </template>
 

@@ -42,6 +42,12 @@ const router = createRouter({
       name: 'show.txns',
       component: ShowTransactions,
       props: true
+    },
+    {
+      path: '/show.payment.pointer/:accountId',
+      name: 'show.payment.pointer',
+      component: () => import('./components/ShowPaymentPointer.vue'),
+      props: true
     }
   ]
 })

@@ -86,6 +86,7 @@ export default {
 
       var requestOptions = {
         method: 'GET',
+        mode: 'cors',
         headers: myHeaders,
         redirect: 'follow'
       }
@@ -114,6 +115,9 @@ export default {
         Actual sent: {{ sentAmount.assetCode }}{{ sentAmount.value }}
       </li>
     </ul>
+  </div>
+  <div class="fetchURL">
+    <button @click="fetchData">Fetch Data</button>
   </div>
 </template>
 
