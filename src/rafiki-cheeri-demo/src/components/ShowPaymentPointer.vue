@@ -1,6 +1,4 @@
 <script>
-import { onMounted } from 'vue'
-
 const API_URL = `http://localhost:8080/gfranklinpp`
 export default {
   props: {
