@@ -2,7 +2,7 @@
 
 ## Pre-requisite
 
-1. Please follow [Rafiki local playground setup](https://github.com/interledger/rafiki/blob/main/infrastructure/local/README.md) to install two ILP node, (a.k.a. account service provider), `cloud-nine-wallet-backend` and `happy-life-bank-backend`, in local environment.
+1. Please follow [Rafiki local playground setup](https://github.com/interledger/rafiki/tree/main/localenv#readme) to install two ILP node, (a.k.a. account service provider), `cloud-nine-wallet-backend` and `happy-life-bank-backend`, in local environment.
 2. Docker, pnpm, node 18 and NVM are required during installation.
 3. Install Postman to access [Interledger](https://www.postman.com/interledger/workspace/interledger/collection/22855701-92761441-6d0c-4fc6-aa04-73eccf6afd4c?action=share&creator=1697784) public API collection, and fork it out to run locally.
 
