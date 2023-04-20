@@ -10,7 +10,7 @@ export default {
   },
   methods: {
     Send() {
-      this.message = 'Impct goals set.'
+      this.message = 'Impact goals is set.'
     }
   },
   components: {}
@@ -20,9 +20,27 @@ export default {
   <div class="greetings">
     <h1 class="green">Setup Impact Goals</h1>
     <h3>
-      Metric A <input type="range" min="0" max="100" step="1" v-model="valueA" /> Metric B
-      <input type="range" min="0" max="100" step="1" v-model="valueB" /> Metric C
-      <input type="range" min="0" max="100" step="1" v-model="valueC" />
+      SDG goal:Quality Education ( {{ valueA || '' }} )<input
+        type="range"
+        min="0"
+        max="100"
+        step="1"
+        v-model="valueA"
+      />
+      SDG goal: Reduced Inequalities ( {{ valueB || '' }} )<input
+        type="range"
+        min="0"
+        max="100"
+        step="1"
+        v-model="valueB"
+      />
+      SDG goal: Climate Action ( {{ valueC || '' }} )<input
+        type="range"
+        min="0"
+        max="100"
+        step="1"
+        v-model="valueC"
+      />
       <button @click="Send()">Set</button>
     </h3>
     <h3>{{ this.message }}</h3>

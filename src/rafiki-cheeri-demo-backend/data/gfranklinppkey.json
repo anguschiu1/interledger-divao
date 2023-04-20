@@ -1,0 +1,11 @@
+{
+  "keys": [
+    {
+      "kid": "keyid-742ab7cd-1624-4d2e-af6e-e15a71638669",
+      "x": "Tk8WHUFjv9XUxXzv2OxMjoF9alvTVB1D1dcFMT47ThQ",
+      "alg": "EdDSA",
+      "kty": "OKP",
+      "crv": "Ed25519"
+    }
+  ]
+}

@@ -5,7 +5,6 @@ const axios = require("axios");
 const indexRouter = require("./routes/index");
 const gfranklinppRouter = require("./routes/gfranklinpp");
 const gfranklinppkeyRouter = require("./routes/gfranklinppkey");
-const googleRouter = require("./routes/google");
 const createIRRouter = require("./routes/create_ir");
 const listOTRouter = require("./routes/list_out_txns");
 const createOPRouter = require("./routes/create_op");
@@ -24,9 +23,6 @@ app.use((req, res, next) => {
 
 // define default route
 app.use("/", indexRouter);
-
-// define route to acquire google search
-app.use("/google", googleRouter);
 
 // define route to acquire payment pointer keys of gfranklin
 app.use("/gfranklinpp", gfranklinppRouter);

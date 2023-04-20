@@ -36,7 +36,9 @@ export default {
 </script>
 <template>
   <div>
-    <h2>{{ parseInt(this.amount) || 'Nothing' }} will be sent to organization "Hello Future".</h2>
+    <h2>
+      {{ parseInt(this.amount) + 'USD' || 'Nothing' }} will be sent to organization "Hello Future".
+    </h2>
     <h3 v-if="this.fetchedData == null">
       <button v-if="parseInt(this.amount)" class="confirmFund" :disabled="false" @click="SendMoney">
         Send

@@ -1,0 +1,24 @@
+{
+  "access_token": {
+    "access": [
+      {
+        "actions": [
+          "create",
+          "read",
+          "list",
+          "complete"
+        ],
+        "type": "incoming-payment"
+      }
+    ],
+    "value": "4C7F481EF7E68EE5CE61",
+    "manage": "http://localhost:4006/token/25cc3d8e-0617-40e5-96d2-1e273c52c5b9",
+    "expires_in": 600
+  },
+  "continue": {
+    "access_token": {
+      "value": "6F4A975016F8E18F2056"
+    },
+    "uri": "http://localhost:4006/continue/7d199d93-5b48-4347-ba29-a21e4025d644"
+  }
+}
