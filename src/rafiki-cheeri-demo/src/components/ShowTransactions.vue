@@ -62,9 +62,9 @@ export default {
         </tr>
       </tbody>
     </table>
-  </div>
-  <div class="fetchURL">
-    <button @click="fetchData">Fetch Data</button>
+    <div class="fetchURL">
+      <button @click="fetchData">Fetch Data</button>
+    </div>
   </div>
 </template>
 
