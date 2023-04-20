@@ -19,6 +19,11 @@ export default {
         name: 'show.payment.pointer',
         params: { accountId: this.accountId }
       })
+    },
+    setImpactGoal() {
+      this.$router.push({
+        name: 'set.goals'
+      })
     }
   }
 }
@@ -27,7 +32,8 @@ export default {
 <template>
   <div class="greetings">
     <h3>Please select action at the menu.</h3>
-    <button type="button" @click="setupFundPayment">Setup Fund Payment</button>
+    <button type="button" @click="setupFundPayment">Fund Payment Setup</button>
+    <button type="button" @click="setImpactGoal">Impact Goals Setup</button>
     <button type="button" @click="showTxns">Show Transactions</button>
     <button type="button" @click="showPaymentPointer">Show Payment Pointer</button>
   </div>

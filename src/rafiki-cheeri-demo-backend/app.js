@@ -8,6 +8,7 @@ const gfranklinppkeyRouter = require("./routes/gfranklinppkey");
 const googleRouter = require("./routes/google");
 const createIRRouter = require("./routes/create_ir");
 const listOTRouter = require("./routes/list_out_txns");
+const createOPRouter = require("./routes/create_op");
 
 // use cors as proxy
 const app = express();
@@ -34,10 +35,13 @@ app.use("/gfranklinpp", gfranklinppRouter);
 app.use("/gfranklinppkey", gfranklinppkeyRouter);
 
 // define route to grant incoming payments request for pfry
-app.use("/createir", createIRRouter);
+app.use("/create_ir", createIRRouter);
 
 // define route to list outgoing payments of gfranklin
 app.use("/list_out_txns", listOTRouter);
+
+// define route to create outgoing payments of gfranklin
+app.use("/create_op", createOPRouter);
 
 app.all("*", function (req, res) {
   res.send("Sorry resource not found");

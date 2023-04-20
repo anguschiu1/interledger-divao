@@ -1,0 +1,38 @@
+const axios = require("axios");
+const express = require("express");
+const router = express.Router();
+
+// define route to create outgoing payment from gfranklin to pfry
+router.get("/", function (req, res, next) {
+  res.send(_responsePayLoad);
+});
+module.exports = router;
+
+const _responsePayLoad = {
+  id: "https://cloud-nine-wallet-backend/accounts/gfranklin/outgoing-payments/27455efe-1c31-40ac-b864-4f7987aae7ae",
+  paymentPointer: "https://cloud-nine-wallet-backend/accounts/gfranklin",
+  quoteId:
+    "https://cloud-nine-wallet-backend/accounts/gfranklin/quotes/27455efe-1c31-40ac-b864-4f7987aae7ae",
+  receiveAmount: {
+    value: "2300",
+    assetCode: "USD",
+    assetScale: 2,
+  },
+  sendAmount: {
+    value: "2300",
+    assetCode: "USD",
+    assetScale: 2,
+  },
+  sentAmount: {
+    value: "2300",
+    assetCode: "USD",
+    assetScale: 2,
+  },
+  receiver:
+    "https://happy-life-bank-backend/accounts/pfry/incoming-payments/bfa0dc33-a31d-44c0-ad3a-6a1e2978f838",
+  failed: false,
+  externalRef: "#INV20230504-012",
+  description: "Top-up project: Hello Future",
+  createdAt: "2023-04-20T00:34:44.530Z",
+  updatedAt: "2023-04-20T00:34:44.637Z",
+};

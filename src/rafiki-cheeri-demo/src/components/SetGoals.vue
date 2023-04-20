@@ -2,13 +2,15 @@
 export default {
   data() {
     return {
-      value: 0,
+      valueA: 40,
+      valueB: 20,
+      valueC: 60,
       message: null
     }
   },
   methods: {
     Send() {
-      this.message = 'Goal set'
+      this.message = 'Impct goals set.'
     }
   },
   components: {}
@@ -18,11 +20,12 @@ export default {
   <div class="greetings">
     <h1 class="green">Setup Impact Goals</h1>
     <h3>
-      <input type="range" min="0" max="100" step="1" v-model="value" />
-      <input type="number" v-model="value" />
+      Metric A <input type="range" min="0" max="100" step="1" v-model="valueA" /> Metric B
+      <input type="range" min="0" max="100" step="1" v-model="valueB" /> Metric C
+      <input type="range" min="0" max="100" step="1" v-model="valueC" />
       <button @click="Send()">Set</button>
     </h3>
-    <h1>{{ this.message }}</h1>
+    <h3>{{ this.message }}</h3>
   </div>
 </template>
 

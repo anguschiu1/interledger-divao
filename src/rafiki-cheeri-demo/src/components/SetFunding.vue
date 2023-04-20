@@ -14,11 +14,12 @@ export default {
 </script>
 <template>
   <div class="greetings">
-    <h1 class="green">Setup Payment</h1>
-    Amount:
-    <input type="range" min="0" max="100" step="1" v-model="amount" />
-    <input type="text" v-model="amount" />
-    <button @click="Send()">Send money</button>
+    <h3>Please select amount to send:</h3>
+    <h3>
+      <input type="range" min="0" max="10000" step="1" v-model="amount" />
+      <input type="text" v-model="amount" />
+      <button @click="Send()">Send money</button>
+    </h3>
   </div>
 </template>
 
@@ -35,7 +36,7 @@ h3 {
 
 .greetings h1,
 .greetings h3 {
-  text-align: center;
+  text-align: left;
 }
 
 @media (min-width: 1024px) {

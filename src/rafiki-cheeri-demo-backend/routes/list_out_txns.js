@@ -40,7 +40,7 @@ const _responsePayLoad = {
         "https://happy-life-bank-backend/accounts/pfry/incoming-payments/f33fe724-c7ad-43f5-b0f9-1f38347cfef0",
       failed: false,
       externalRef: "#INV20230504-012",
-      description: "Startup fund for ImpactOrgABC",
+      description: "Startup fund: ImpactOrgABC",
       createdAt: "2023-04-04T23:30:36.219Z",
       updatedAt: "2023-04-04T23:30:36.289Z",
     },
@@ -50,17 +50,17 @@ const _responsePayLoad = {
       quoteId:
         "https://cloud-nine-wallet-backend/accounts/gfranklin/quotes/f6ef2fff-14a7-4d07-94ab-1440facda56c",
       receiveAmount: {
-        value: "2305.22",
+        value: "2300",
         assetCode: "USD",
         assetScale: 2,
       },
       sendAmount: {
-        value: "2305.22",
+        value: "2300",
         assetCode: "USD",
         assetScale: 2,
       },
       sentAmount: {
-        value: "2305.22",
+        value: "2300",
         assetCode: "USD",
         assetScale: 2,
       },
@@ -69,8 +69,8 @@ const _responsePayLoad = {
       failed: false,
       externalRef: "#INV20230504-012",
       description: "Top-up project: Hello Future",
-      createdAt: "2023-04-05T23:30:36.219Z",
-      updatedAt: "2023-04-08T23:30:36.289Z",
+      createdAt: "2023-04-20T00:34:44.530Z",
+      updatedAt: "2023-04-20T00:34:44.637Z",
     },
   ],
 };
